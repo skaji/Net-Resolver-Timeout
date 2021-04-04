@@ -38,6 +38,54 @@ To avoid this limitation, `Net::Resolver::Timeout` first spawns a child process.
 And call `Socket::getnameinfo`/`Socket::getnameinfo` with `alarm(2)` in the child process, _without_ perl-based signal handler
 so that it gets `SIGALRM` properly.
 
+# METHOD
+
+## new
+
+Constructor.
+
+    my $resolver = Net::Resolver::Timeout->new;
+
+## resolve
+
+Resolve IP addresses from host.
+
+    my @ip = $resolver->resolve($host, %argv);
+
+Here `%argv` may contain the following keys:
+
+- timeout
+
+    Timeout seconds, eg: `1`, `2`, `0.5`, `1.5`.
+
+- protocol
+
+    Protocol, `tcp` or `udp`.
+
+- family
+
+    Address family, `ipv4` or `ipv6`
+
+## reverse\_resolve
+
+Resolve host from IP address.
+
+    my $host = $resolver->reverse_resolve($ip, %argv);
+
+Here `%argv` may contain the following keys:
+
+- timeout
+
+    Timeout seconds, eg: `1`, `2`, `0.5`, `1.5`.
+
+- protocol
+
+    Protocol, `tcp` or `udp`.
+
+- port
+
+    Port number, eg: `80`, `443`
+
 # SEE ALSO
 
 [Socket](https://metacpan.org/pod/Socket)

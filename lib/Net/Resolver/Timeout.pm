@@ -301,6 +301,62 @@ To avoid this limitation, C<Net::Resolver::Timeout> first spawns a child process
 And call C<Socket::getnameinfo>/C<Socket::getnameinfo> with C<alarm(2)> in the child process, I<without> perl-based signal handler
 so that it gets C<SIGALRM> properly.
 
+=head1 METHOD
+
+=head2 new
+
+Constructor.
+
+  my $resolver = Net::Resolver::Timeout->new;
+
+=head2 resolve
+
+Resolve IP addresses from host.
+
+  my @ip = $resolver->resolve($host, %argv);
+
+Here C<%argv> may contain the following keys:
+
+=over 4
+
+=item timeout
+
+Timeout seconds, eg: C<1>, C<2>, C<0.5>, C<1.5>.
+
+=item protocol
+
+Protocol, C<tcp> or C<udp>.
+
+=item family
+
+Address family, C<ipv4> or C<ipv6>
+
+=back
+
+=head2 reverse_resolve
+
+Resolve host from IP address.
+
+  my $host = $resolver->reverse_resolve($ip, %argv);
+
+Here C<%argv> may contain the following keys:
+
+=over 4
+
+=item timeout
+
+Timeout seconds, eg: C<1>, C<2>, C<0.5>, C<1.5>.
+
+=item protocol
+
+Protocol, C<tcp> or C<udp>.
+
+=item port
+
+Port number, eg: C<80>, C<443>
+
+=back
+
 =head1 SEE ALSO
 
 L<Socket>
