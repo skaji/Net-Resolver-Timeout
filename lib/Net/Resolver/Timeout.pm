@@ -293,6 +293,7 @@ To specify timeout, you might want to write code like:
     local $SIG{ALRM} = sub { die "__TIMEOUT__\n" };
     alarm 1;
     ($err, $host) = getnameinfo "104.244.42.193", 0, NIx_NOSERV;
+    alarm 0;
   };
 
 Unfortunately, this code does not work, because perl signal handlers can not interrupt C function C<getnameinfo(3)>.
